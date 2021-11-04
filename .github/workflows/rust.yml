@@ -29,7 +29,14 @@ jobs:
     - name: Build
       run: cargo build --release
     - name: Print Dir
-      run: ls
+      run: |
+        ls
+        cd ./target 
+        ls
+        cd ./target/release
+        ls
+        cd ./target/release/build
+        ls
     - uses: actions/upload-artifact@v2
       with:
         name: Build test
