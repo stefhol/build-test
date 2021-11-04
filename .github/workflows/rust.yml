@@ -16,7 +16,7 @@ jobs:
       SQLX_OFFLINE: true
     defaults:
       run:
-        working-directory: ./crawler
+        working-directory: .
     container:
       image: clux/muslrust
     steps:
