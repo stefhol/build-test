@@ -1,0 +1,36 @@
+
+name: Rust
+
+on:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-latest
+    name: build release
+    env:
+      SQLX_OFFLINE: true
+    defaults:
+      run:
+        working-directory: ./crawler
+    container:
+      image: clux/muslrust
+    steps:
+    - uses: actions/checkout@v2
+    - name: Link to predefined musl toolchain
+      run: |
+          ln -s /root/.cargo $HOME/.cargo
+          ln -s /root/.rustup $HOME/.rustup
+    
+    - name: Build
+      run: cargo build --release
+    - name: Print Dir
+      run: ls
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Build test
+        path: ./target/release/build
