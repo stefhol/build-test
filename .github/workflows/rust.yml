@@ -33,9 +33,9 @@ jobs:
         ls
         cd ./target 
         ls
-        cd ./target/release
+        cd ./release
         ls
-        cd ./target/release/build
+        cd ./build
         ls
     - uses: actions/upload-artifact@v2
       with:
